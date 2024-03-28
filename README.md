@@ -1,8 +1,8 @@
-#Etape suivi :
+# Etape suivi :
 
 Création du code
 
-##Test du code et de l'API : 
+## Test du code et de l'API : 
 
 Initialiser les valeurs :
 
@@ -26,7 +26,7 @@ Humidité : 78%
 Pays : MY
 ```
 
-##Pour créer l'image docker :
+## Pour créer l'image docker :
 ```
 docker build -t my_weather_api .
 ```
@@ -42,7 +42,7 @@ docker tag my_weather_api corentin339/20210101
 ```
 Ensuite, je suis allé sur docker desktop, appuyé sur les trois petits points à côté de l'image créée et appuyé sur "Push to Hub".
 
-##Pour l'installer, vous devez faire :
+## Pour l'installer, vous devez faire :
 ```
 docker pull corentin332/20210101
 docker run --env LAT=5.902785 --env LONG=102.754175 --env API_KEY="your_key" my_weather_api
