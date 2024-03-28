@@ -1,8 +1,11 @@
-###Etape suivi :
+#Etape suivi :
 
 Création du code
+
 ##Test du code et de l'API : 
+
 Initialiser les valeurs :
+
 ```
 set LAT=5.902785
 set LONG=102.754175
