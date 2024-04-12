@@ -58,7 +58,10 @@ Ne pas oublier de changer "your_key" par votre clé
 ## Etape suivi :
 
 Modification des fichiers meteo.py et Dockerfile.
+
 Création du fichier "docker_build_push.yaml" qui va automatiquement mettre à jour l'image docker dès que nous faisons un push sur github.
+
+Création de deux repository secrets correspondant secrets.DOCKERHUB_USERNAME et secrets.DOCKERHUB_PASSWORD dans mon docker_build_push.yaml.
 
 ## Test de l'API
 
