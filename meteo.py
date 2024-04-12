@@ -1,38 +1,44 @@
+from flask import Flask, request, jsonify
 import os
 import requests
 
-def get_weather(lat, lon):
+app = Flask(__name__)
+
+@app.route('/')
+def get_weather():
+    lat_str = request.args.get('lat')
+    lon_str = request.args.get('lon')
     api_key = os.getenv('API_KEY')
-    url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}"
-    response = requests.get(url)
-    data = response.json()
-    return data
-
-if __name__ == "__main__":
-    lat_str = os.getenv('LAT')
-    lon_str = os.getenv('LONG')
-
+    
     if lat_str is not None and lon_str is not None:
         try:
             latitude = float(lat_str)
             longitude = float(lon_str)
 
-            weather_data = get_weather(latitude, longitude)
-            
-            coord = weather_data['coord']
-            weather = weather_data['weather'][0]
-            main = weather_data['main']
-            wind = weather_data['wind']
-            sys = weather_data['sys']
+            url = f"http://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}"
+            response = requests.get(url)
+            data = response.json()
 
-            print(f"Coordonnées : longitude {coord['lon']}, latitude {coord['lat']}")
-            print(f"Météo : {weather['description']}")
-            print(f"Température : {main['temp']} Kelvin")
-            print(f"Vitesse du vent : {wind['speed']} m/s")
-            print(f"Pression atmosphérique : {main['pressure']} hPa")
-            print(f"Humidité : {main['humidity']}%")
-            print(f"Pays : {sys['country']}")
+            coord = data['coord']
+            weather = data['weather'][0]
+            main = data['main']
+            wind = data['wind']
+            sys = data['sys']
+
+            weather_info = {
+                "coordinates": {"longitude": coord['lon'], "latitude": coord['lat']},
+                "description": weather['description'],
+                "temperature": main['temp'],
+                "wind_speed": wind['speed'],
+                "pressure": main['pressure'],
+                "humidity": main['humidity'],
+                "country": sys['country']
+            }
+            return jsonify(weather_info)
         except ValueError:
-            print("Les valeurs de latitude et de longitude ne sont pas valides.")
+            return "Les valeurs de latitude et de longitude ne sont pas valides.", 400
     else:
-        print("Les variables d'environnement LAT et LONG ne sont pas définies.")
+        return "Les variables d'environnement LAT et LONG ne sont pas définies.", 400
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=8081)

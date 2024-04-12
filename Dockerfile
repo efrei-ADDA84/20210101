@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY meteo.py .
 
-RUN pip install requests
+RUN pip install --no-cache-dir requests Flask
 
 CMD ["python", "meteo.py"]
