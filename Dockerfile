@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY meteo.py .
 
-RUN pip install --no-cache-dir requests Flask
+RUN pip install --no-cache-dir requests Flask prometheus_client
 
 CMD ["python", "meteo.py"]
