@@ -63,10 +63,16 @@ Création du fichier "docker_build_push.yaml" qui va automatiquement mettre à j
 ## Test de l'API
 
 Dans un CMD, executez ce code en changeant l'API_KEY par votre numéro d'API_KEY
-```docker run -p 8081:8081 --env API_KEY=29ebece2943379cab1c8a846b5fc2c97 corentin339/20210101:latest```
+```
+docker run -p 8081:8081 --env API_KEY=29ebece2943379cab1c8a846b5fc2c97 corentin339/20210101:latest
+```
 
 Dans un autre CMD, executez ce code :
-```curl "http://localhost:8081/?lat=5.902785&lon=102.754175"```
+```
+curl "http://localhost:8081/?lat=5.902785&lon=102.754175"
+```
 
 On obtient le résultat suivant :
-```{"coordinates":{"latitude":5.9028,"longitude":102.7542},"country":"MY","description":"overcast clouds","humidity":73,"pressure":1008,"temperature":302.41,"wind_speed":5.47}```
+```
+{"coordinates":{"latitude":5.9028,"longitude":102.7542},"country":"MY","description":"overcast clouds","humidity":73,"pressure":1008,"temperature":302.41,"wind_speed":5.47}
+```
