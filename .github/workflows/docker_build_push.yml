@@ -68,5 +68,5 @@ jobs:
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          ports: 8081:80
+          ports: 80:80
           secure-environment-variables: API_KEY=${{ secrets.API_KEY }}
