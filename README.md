@@ -55,6 +55,8 @@ Ne pas oublier de changer "your_key" par votre clé
 
 # TP2
 
+(hash correspondant à la dernier version du TP1 : 240286d9e4f06d23f4bf34f135d914291cff6a34)
+
 ## Etape suivi :
 
 Modification des fichiers meteo.py et Dockerfile.

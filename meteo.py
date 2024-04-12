@@ -1,11 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import os
 import requests
+from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 
 app = Flask(__name__)
 
+REQUEST_COUNT = Counter('request_count', 'Total number of requests received')
+
 @app.route('/')
 def get_weather():
+    REQUEST_COUNT.inc()
     lat_str = request.args.get('lat')
     lon_str = request.args.get('lon')
     api_key = os.getenv('API_KEY')
@@ -39,6 +43,10 @@ def get_weather():
             return "Les valeurs de latitude et de longitude ne sont pas valides.", 400
     else:
         return "Les variables d'environnement LAT et LONG ne sont pas définies.", 400
+
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8081)
