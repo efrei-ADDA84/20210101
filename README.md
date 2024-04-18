@@ -139,14 +139,17 @@ request_count_created 1.7129269070397422e+09
 ## Etape suivi :
 
 Modification du fichier yml. Ajout du code permettant de push l'image à chaque nouveau commit sur ACR.
+
 Le code permettant de push l'image sur docker à chaque nouveau commit a également été laissé en cas de modification du code.
-Afin d'être en accord avec le port de notre ACR, j'ai modifié le port désigné dans le fichier meteo.py. 
+
+Afin d'être en accord avec le port de notre fichier python, j'ai modifié le port désigné dans azure pour avoir le port 8081.
+On est donc obligé d'ajouter le numéro de port directement sur la commende. J'ai choisis de modifier le port de azure pour être en accord avec les deux tps précédent.
 
 ## Test de l'API
 
 Ouvrez un CMD et executez le code suivant :
 ```
-curl "http://devops-20210101.francecentral.azurecontainer.io/?lat=5.902785&lon=102.754175"
+curl "http://devops-20210101.francecentral.azurecontainer.io:8081/?lat=5.902785&lon=102.754175"
 ```
 
 Vous devez obtenir le résultat suivant :
