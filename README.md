@@ -55,7 +55,12 @@ Ne pas oublier de changer "your_key" par votre clé
 
 # TP2
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+(hash correspondant à la dernier version du TP2 : 240286d9e4f06d23f4bf34f135d914291cff6a34)
+=======
 (hash correspondant à la dernier version du TP1 : 240286d9e4f06d23f4bf34f135d914291cff6a34)
+>>>>>>> eadb20e0c9036d4ce8f6325cf6ec94a33f55cda1
 
 ## Etape suivi :
 
@@ -84,6 +89,11 @@ On obtient le résultat suivant :
 
 # TP3
 
+<<<<<<< HEAD
+(hash correspondant à la dernier version du TP3 : eadb20e0c9036d4ce8f6325cf6ec94a33f55cda1)
+
+=======
+>>>>>>> eadb20e0c9036d4ce8f6325cf6ec94a33f55cda1
 ## Etape bonus :
 
 Modification du fichier meteo.py pour réaliser le bonus :
@@ -155,4 +165,49 @@ curl "http://devops-20210101.francecentral.azurecontainer.io:8081/?lat=5.902785&
 Vous devez obtenir le résultat suivant :
 ```
 {"coordinates":{"latitude":5.9028,"longitude":102.7542},"country":"MY","description":"overcast clouds","humidity":73,"pressure":1011,"temperature":302.54,"wind_speed":5.2}
+```
+
+# TP4
+
+Pour ce TP4, j'ai créé un nouveau dossier appelé Devops_TP4, contenant les fichiers main.tf pour définir les ressources principales et ssh_key.tf pour générer une paire de clés SSH.
+
+J'ai, dans un premier lieu, du tgélécharger terraform sur ma machine ainsi que Azure CLI et les mettre dans mes variables d'environnements.
+
+Une fois celà fait, j'ai exécuter ce code :
+```
+terraform init
+```
+![init.png](Devops_TP4/photo/init.png)
+
+Une fois que ceci était bon, j'ai exécuter cette deuxième commande :
+```
+terraform plan
+```
+![plan.png](Devops_TP4/photo/plan.png)
+
+J'ai ensuite executer la commande apply :
+```
+terraform apply
+```
+![apply.png](Devops_TP4/photo/apply.png)
+
+Ensuite, j'ai créer un fichier que j'ai nommé private_key.pem et que j'ai placé dans mon bureau.
+J'y ai mis la clé que la requête suivante m'a donné :
+```
+terraform output private_key_pem
+```
+![output_privatekey.png](Devops_TP4/photo/output_privatekey.png)
+
+Puis, en prenant l'adresse IP public de ma machine virtuel qui a été créée sur Azure :
+![adresseIP.png](Devops_TP4/photo/adresseIP.png)
+
+J'execute la commende suivante pour se connecter à la VM :
+```
+ssh -i ~/Desktop/private_key.pem devops@52.143.129.129 cat /etc/os-release
+```
+![requete.png](Devops_TP4/photo/requete.png)
+
+Enfin on execute la commande suivante lorsque nous avons terminé :
+```
+terraform destroy
 ```
